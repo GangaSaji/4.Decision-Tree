@@ -1,0 +1,24 @@
+#load data.................................
+import pandas as pd
+heart= pd.read_csv("/content/heart.csv")
+x= heart[['trestbps','chol','thalach','oldpeak']]
+y= heart['target']
+#algorithm........................
+from sklearn.tree import DecisionTreeClassifier
+ml=DecisionTreeClassifier()
+#fit alorithm..........
+ml=ml.fit(x,y)
+res=ml.predict([[120,342,170,1.6]])
+print (res)
+
+from sklearn import tree
+import graphviz
+dot_data = tree.export_graphviz(ml,out_file=None,
+                                filled=True,
+                                rounded=True,  
+                      special_characters=True)
+graph = graphviz.Source(dot_data) 
+graph.render("tree_with_kaggle") 
+graph
+
+#output=1

@@ -1,0 +1,27 @@
+#load data.................................
+from sklearn.datasets import load_iris
+iris=load_iris()
+x=iris.data
+y=iris.target
+fn=iris.feature_names
+cn=iris.target_names
+
+#algorithm........................
+from sklearn.tree import DecisionTreeClassifier
+ml=DecisionTreeClassifier()
+#fit alorithm..........
+ml=ml.fit(x,y)
+res=ml.predict([[3.0,4.5,5.0,6.5,]])
+print (res)
+from sklearn import tree
+tree.plot_tree(ml)
+import graphviz
+dot_data = tree.export_graphviz(ml, out_file=None,
+                                feature_names=fn,  
+                                class_names=cn,
+                                filled=True,
+                                rounded=True,  
+                      special_characters=True)  
+graph = graphviz.Source(dot_data) 
+graph.render("tkm") 
+graph 
